@@ -1,0 +1,12 @@
+
+1) create mongodb container
+docker run --name mongotaskdb -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret -it -p 27017:27017 -d ba0c2ff8d362
+docker exec -it mongodb mongo -u mongoadmin
+show dbs
+
+2) create taskdb
+use taskdb
+
+3) create indexes for full-text search
+db.Task.ensureIndex({description:"text"});
+db.Subtask.ensureIndex({name:"text"});
